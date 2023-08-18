@@ -1,7 +1,7 @@
 {
-	"name": "Astro Theme Cactus Demo",
-	"short_name": "Astro_Cactus",
-	"description": "Starter blog site for Astro",
+	"name": "J-log",
+	"short_name": "J-log",
+	"description": "My personal blog where I write about all kind of stuff, mainly dev",
 	"icons": [
 		{
 			"src": "/192x192.png",

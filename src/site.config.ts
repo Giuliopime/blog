@@ -14,11 +14,11 @@ interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
-	author: "Chris Williams",
+	author: "Giulio Pimenoff Verdolin",
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
-	title: "Astro Theme Cactus",
+	title: "J-log",
 	// Meta property used as a default description meta property
-	description: "An opinionated starter theme for Astro",
+	description: "My personal blog where I write about all kind of stuff, mainly dev",
 	// HTML lang property, found in src/layouts/Base.astro L:18
 	lang: "en-GB",
 	// Meta property, found in src/components/BaseHead.astro L:42
@@ -28,7 +28,7 @@ export const siteConfig: SiteConfig = {
 	themeColorDark: "#1d1f21",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
-		locale: "en-GB",
+		locale: "it-IT",
 		options: {
 			day: "numeric",
 			month: "short",
