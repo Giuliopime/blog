@@ -28,7 +28,7 @@ export const siteConfig: SiteConfig = {
 	themeColorDark: "#1d1f21",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
-		locale: "en_GB",
+		locale: "en-GB",
 		options: {
 			day: "numeric",
 			month: "short",
