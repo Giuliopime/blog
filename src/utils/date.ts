@@ -15,3 +15,8 @@ export function getFormattedDate(
 
 	return dateFormat.format(new Date(date));
 }
+
+export function getAge() {
+	const birthday = new Date(2003, 8, 29);
+	return Math.floor((Date.now() - birthday.getTime()) / 31556952000);
+}
