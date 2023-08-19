@@ -4,6 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import prefetch from "@astrojs/prefetch";
 import remarkUnwrapImages from "remark-unwrap-images";
+import gruvboxTheme from './gruvbox-shiki-theme.json';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkUnwrapImages],
     shikiConfig: {
-      theme: "dracula",
+      theme: gruvboxTheme, // Or 'one-dark-pro', 'github-dark'
       wrap: true
     }
   },
