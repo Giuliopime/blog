@@ -14,7 +14,7 @@ export default defineConfig({
     remarkPlugins: [remarkUnwrapImages],
     shikiConfig: {
       theme: gruvboxTheme, // Or 'one-dark-pro', 'github-dark'
-      wrap: true
+      wrap: false
     }
   },
   experimental: {
