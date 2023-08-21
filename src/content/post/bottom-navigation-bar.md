@@ -104,4 +104,63 @@ contentWindowInsets = ScaffoldDefaults.contentWindowInsets.exclude(NavigationBar
 
 You can find the full code for the demo in this article on my [GitHub repo](https://github.com/Giuliopime/jetpack-demos/tree/main)  
 
+## Bonus - animations
+After publishing this article I realised animations were missing, or didn’t work well with the default settings.  
+
+The `NavHost` now has animations support, so I changed each composable enter and exit animations to match its position in the Bottom Navigation Bar.  
+
+Here is the updated `NavHost`  
+
+```kotlin
+NavHost(
+    navController = navController,
+    startDestination = BottomAppBarPage.Account.route,
+    modifier = Modifier.weight(1f)
+) {
+    composable(
+        route = BottomAppBarPage.Feed.route,
+        enterTransition = {
+            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
+        },
+        exitTransition = {
+            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
+        }
+    ) {
+        Text(text = "Feed")
+    }
+
+    composable(
+        route = BottomAppBarPage.Account.route,
+        enterTransition = {
+            if (initialState.destination.route == BottomAppBarPage.Settings.route) {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Right)
+            } else {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left)
+            }
+        },
+        exitTransition = {
+            if (targetState.destination.route == BottomAppBarPage.Settings.route) {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Left)
+            } else {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right)
+            }
+        }
+    ) {
+        AccountPage()
+    }
+
+    composable(
+        route = BottomAppBarPage.Settings.route,
+        enterTransition = {
+            slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left)
+        },
+        exitTransition = {
+            slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right)
+        }
+    ) {
+        Text(text = "Settings")
+    }
+}
+```
+
 Happy coding ;)
