@@ -22,7 +22,9 @@ Here is an example of a full activity for reference
 
 Now we just need the the sheet to **ignore the system navigation bar insets**, we can do this by passing a `WindowInsetsthat` doesn’t take count of that, for example `WindowInsets.displayCutout` (*those probably aren’t the best WindowInsets to use but they get the job done for this demo*).  
 
-If you don’t do anything else, the sheet content will go behind the navigation bar, because it doesn’t take count of its insets, so we **wrap the content in a `Column` and apply the `Modifier.navigationsBarsPadding()` modifier to it**.  
+If you don’t do anything else, the sheet content will go behind the navigation bar, because it doesn’t take count of its insets, so we **wrap the content in a `Column` and apply the `Modifier.padding(bottom = bottomPadding)` modifier to it**.  
+The `bottomPadding` is calculated outside of the Column scope via `WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()`.  
+If we were to call this method inside the ModalBottomSheet we would not get a valid padding since those insets have already been consumed.  
 
 Here is the improved ModalBottomSheet:  
 <script src="https://gist.github.com/Giuliopime/4ad502981b8169550a8197360000dd5c.js"></script>  
