@@ -1,17 +1,17 @@
 ---
-title: "Managing environment variables in Kotlin - DoToo [backend]"
+title: "Managing environment variables in Kotlin with ease and type safety"
 publishDate: "23 April 2024"
-description: "Manage your environment variables with ease and type safety!"
+description: "Environment variables are always needed when developing some sort of api. This is why I built my own small script to manage and retrieve…"
 tags: ["kotlin", "backend"]
 ogImage: "/thumbnails/env-variables-kotlin-illustration.png"
 ---
-Environment variables are always needed when developing some sort of api. This is why I built my own small script to manage and retrieve them with ease, while also keeping type safety.  
+Environment variables are always needed when developing some sort of api. This is why I built my own small script to manage and retrieve them with ease, while also keeping type safety.
 
 #### Features
-✅ Configuration variables split across Kotlin objects  
-✅ Automatic type safety by defining your custom parser  
-✅ Support for optional and default values  
-✅ Template .env file generation based on Kotlin defined variables    
+✅ Configuration variables split across Kotlin objects
+✅ Automatic type safety by defining your custom parser
+✅ Support for optional and default values
+✅ Template .env file generation based on Kotlin defined variables
 
 ## Adding dependencies
 - [dotenv kotlin](https://github.com/cdimascio/dotenv-kotlin)
@@ -20,8 +20,8 @@ Environment variables are always needed when developing some sort of api. This i
 - [optional] A logger, I recommend [KotlinLogging](https://github.com/oshai/kotlin-logging)
 
 ## Creating the required annotations
-We are gonna use reflections to detect the environment variables that need to be read.  
-To make life easier we are gonna create our own annotations for that.  
+We are gonna use reflections to detect the environment variables that need to be read.
+To make life easier we are gonna create our own annotations for that.
 
 The first one will be used to annotate the Kotlin objects that contain the variables, it accepts a prefix string which we'll use later:
 ```kotlin
@@ -68,12 +68,12 @@ object ApplicationConfig {
 As you can see we can use Kotlin types directly and even assign default values to these properties. If you don't wanna assign a default value you can also make it lateinit.
 
 ## Creating the environment reader
-We do need to read enviornment variables somehow. In my case I used the dotenv library mentioned in the dependencies, but the good part is that you are free to use anything else.  
+We do need to read enviornment variables somehow. In my case I used the dotenv library mentioned in the dependencies, but the good part is that you are free to use anything else.
 What's important is that you provide a function that conforms to the required signature, which is the following:
 ```kotlin
 val configurationReader: (key: String, clazz: KClass<*>) -> Any?
 ```
-The function we need to create receives a key for the env variable we are looking for and a `KClass` that indicates the type of the variables we are excepting.  
+The function we need to create receives a key for the env variable we are looking for and a `KClass` that indicates the type of the variables we are excepting.
 
 Let's fullfil this real quick, first lets create our dotenv instance, which by default looks for a `.env` file and fallsback to the System env vars:
 ```kotlin
@@ -119,14 +119,14 @@ fun read(key: String, type: KClass<*>, ): Any? {
     }
 }
 ```
-As you can see we read the value using dotenv and then parse it depending on the received `type` parameter!  
+As you can see we read the value using dotenv and then parse it depending on the received `type` parameter!
 
 ## Creating the bridge to our Kotlin objects
 <script src="https://gist.github.com/Giuliopime/6c1809c6dbc244d85f44350d704d2892.js"></script>
 
 This class receives two parameters:
 - the package that contains out Kotlin configuration objects
-- the function used to read values from the environment  
+- the function used to read values from the environment
 
 It then provides two functions:
 - `listConfigurations` that gives back all the detected configuration variables and their info
@@ -162,13 +162,13 @@ We can now freely use our env variables like so:
 ```kotlin
 println(ApiConfig.port)
 ```
-✅ type safety  
-✅ auto completion  
-✅ globally accessible  
+✅ type safety
+✅ auto completion
+✅ globally accessible
 ✅ DX happiness
 
 ## Automatically generating our .env file
-Let's take this one step further. We don't wanna double our jobs and have to create both our Kotlin objects and .env file. Let's generate the .env file automatically!  
+Let's take this one step further. We don't wanna double our jobs and have to create both our Kotlin objects and .env file. Let's generate the .env file automatically!
 
 Here is a small script (you can put this in a separate module) that does this for us:
 ```kotlin
@@ -200,7 +200,7 @@ API_SESSION_MAX_AGE_IN_SECONDS=2592000
 ```
 
 ## Sources and mentions
-You can find a full sample [in my repo](https://github.com/Giuliopime/do-too/tree/main/do-too-api/src/main/kotlin/app/dotoo/config)!  
+You can find a full sample [in my repo](https://github.com/Giuliopime/do-too/tree/main/do-too-api/src/main/kotlin/app/dotoo/config)!
 
 
 Feel free to also checkout the new Apple Pkl library which seems quite handy and powerful too https://pkl-lang.org/index.html ^^
